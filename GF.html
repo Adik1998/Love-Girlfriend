@@ -1,0 +1,321 @@
+# Romantic Love Website ❤️
+
+```html
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Awak ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
+
+    body{
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      position:relative;
+    }
+
+    /* Bintang */
+    .stars{
+      position:absolute;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      z-index:0;
+    }
+
+    .stars span{
+      position:absolute;
+      display:block;
+      width:3px;
+      height:3px;
+      background:white;
+      border-radius:50%;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%,100%{opacity:0.2;}
+      50%{opacity:1;}
+    }
+
+    /* Bulan */
+    .moon{
+      position:absolute;
+      top:60px;
+      right:100px;
+      width:120px;
+      height:120px;
+      background:#fff;
+      border-radius:50%;
+      box-shadow:0 0 50px rgba(255,255,255,0.8);
+      z-index:0;
+    }
+
+    /* Awan */
+    .cloud{
+      position:absolute;
+      background:rgba(255,255,255,0.15);
+      border-radius:100px;
+      filter: blur(5px);
+      animation: moveCloud 30s linear infinite;
+    }
+
+    .cloud::before,
+    .cloud::after{
+      content:'';
+      position:absolute;
+      background:rgba(255,255,255,0.15);
+      border-radius:50%;
+    }
+
+    .cloud1{
+      width:220px;
+      height:70px;
+      top:120px;
+      left:-250px;
+    }
+
+    .cloud1::before{
+      width:90px;
+      height:90px;
+      top:-40px;
+      left:30px;
+    }
+
+    .cloud1::after{
+      width:120px;
+      height:120px;
+      top:-60px;
+      right:20px;
+    }
+
+    @keyframes moveCloud {
+      from{transform:translateX(0);}
+      to{transform:translateX(1600px);}
+    }
+
+    /* Kotak utama */
+    .container{
+      position:relative;
+      z-index:2;
+      background:rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border:1px solid rgba(255,255,255,0.2);
+      width:420px;
+      padding:40px;
+      border-radius:30px;
+      text-align:center;
+      color:white;
+      box-shadow:0 10px 40px rgba(0,0,0,0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100%{transform:translateY(0px);}
+      50%{transform:translateY(-8px);}
+    }
+
+    .love{
+      font-size:50px;
+      animation: heartbeat 1s infinite;
+      margin-bottom:10px;
+    }
+
+    @keyframes heartbeat {
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.15);}
+    }
+
+    h1{
+      font-size:28px;
+      margin-bottom:30px;
+      line-height:1.4;
+    }
+
+    .btn{
+      padding:14px 35px;
+      border:none;
+      border-radius:50px;
+      font-size:18px;
+      cursor:pointer;
+      position:absolute;
+      transition:0.2s ease;
+      font-weight:600;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    #yes{
+      background:#00c853;
+      color:white;
+      left:70px;
+      bottom:120px;
+    }
+
+    #yes:hover{
+      transform:scale(1.08);
+    }
+
+    #no{
+      background:#ff1744;
+      color:white;
+      right:70px;
+      bottom:120px;
+    }
+
+    #result{
+      margin-top:120px;
+      font-size:24px;
+      font-weight:bold;
+      color:#fff;
+      text-shadow:0 0 10px rgba(255,255,255,0.8);
+    }
+
+    .qr-box{
+      margin-top:25px;
+    }
+
+    .qr-box p{
+      margin-bottom:10px;
+      font-size:14px;
+      opacity:0.8;
+    }
+
+    .qr-box img{
+      width:120px;
+      border-radius:15px;
+      background:white;
+      padding:8px;
+    }
+
+    .footer{
+      margin-top:15px;
+      font-size:13px;
+      opacity:0.7;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <div class="moon"></div>
+  <div class="cloud cloud1"></div>
+
+  <div class="container">
+
+    <div class="love">❤️</div>
+
+    <h1>Adakah awak masih sayang dengan saya?</h1>
+
+    <button id="yes" class="btn">Ya 🥰</button>
+    <button id="no" class="btn">Tidak 😅</button>
+
+    <div id="result"></div>
+
+    <!-- QR CODE -->
+    <div class="qr-box">
+      <p>Scan QR untuk buka web ini 📱</p>
+
+      <!-- Tukar LINK-WEBSITE-ANDA kepada link website sebenar -->
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=LINK-WEBSITE-ANDA" alt="QR Code">
+    </div>
+
+    <div class="footer">
+      Made with ❤️ khas untuk awak
+    </div>
+
+  </div>
+
+<script>
+
+  // Bintang random
+  const stars = document.getElementById('stars');
+
+  for(let i=0; i<120; i++){
+    let star = document.createElement('span');
+
+    star.style.top = Math.random() * 100 + '%';
+    star.style.left = Math.random() * 100 + '%';
+
+    star.style.animationDuration = (Math.random() * 3 + 1) + 's';
+
+    stars.appendChild(star);
+  }
+
+  // Button tidak lari
+  const noBtn = document.getElementById('no');
+
+  noBtn.addEventListener('mouseover', () => {
+
+    const x = Math.floor(Math.random() * (window.innerWidth - 120));
+    const y = Math.floor(Math.random() * (window.innerHeight - 120));
+
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+  });
+
+  // Button ya
+  const yesBtn = document.getElementById('yes');
+  const result = document.getElementById('result');
+
+  yesBtn.addEventListener('click', () => {
+
+    result.innerHTML = 'Awww 🥺❤️ Saya pun masih sayang awak selamanya ✨';
+
+    document.body.style.background = 'linear-gradient(to bottom, #ff758c, #ff7eb3)';
+
+  });
+
+</script>
+
+</body>
+</html>
+```
+
+## Cara guna QR Code
+
+1. Upload file HTML ini ke:
+
+* GitHub Pages
+* Netlify
+* Vercel
+* Firebase Hosting
+
+2. Selepas dapat link website:
+
+Contoh:
+
+```html
+https://namasaya.netlify.app
+```
+
+3. Tukar bahagian ini:
+
+```html
+LINK-WEBSITE-ANDA
+```
+
+kepada:
+
+```html
+https://namasaya.netlify.app
+```
+
+QR code akan automatik jadi scan terus ke web tersebut ❤️
